@@ -27,3 +27,16 @@ pnpm -v
 npm install -g @angular/cli@22
 ng version           # Angular CLI 22.x
 ```
+
+## Folge 003 – Projekt anlegen mit `ng new`
+
+```bash
+ng new kundenportal --package-manager=pnpm --style=css --ssr=false --ai-config=none
+cd kundenportal
+pnpm start           # → http://localhost:4200
+```
+
+Beim allerersten Start fragt die CLI, ob sie anonyme Nutzungsdaten senden darf (y/N).
+Standalone, strict (TypeScript 6 + strict Templates), Zoneless und Vitest sind in Angular 22 Standard.
+
+> In diesem Repo liegt das Projekt direkt im Wurzelordner (statt in `kundenportal/`).
