@@ -1,4 +1,4 @@
-import { Component, booleanAttribute, input } from '@angular/core';
+import { Component, booleanAttribute, input, output } from '@angular/core';
 import { Customer } from '../customer';
 
 @Component({
@@ -10,4 +10,5 @@ import { Customer } from '../customer';
 export class CustomerCard {
   readonly customer = input.required<Customer>();
   readonly favorite = input(false, { transform: booleanAttribute });
+  readonly favoriteToggle = output<number>();
 }

@@ -200,3 +200,17 @@ readonly favorite = input(false, { transform: booleanAttribute });
 ```html
 <app-customer-card [customer]="customer" [favorite]="favorites().includes(customer.id)" />
 ```
+
+## Folge 016 – output(): Events nach oben melden
+
+```ts
+readonly favoriteToggle = output<number>();
+```
+
+```html
+<!-- customer-card.html -->
+<button type="button" class="star" (click)="favoriteToggle.emit(customer().id)">…</button>
+
+<!-- customer-list.html -->
+<app-customer-card … (favoriteToggle)="toggleFavorite($event)" />
+```

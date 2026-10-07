@@ -2,7 +2,7 @@
   <h3>{{ customer().name }}</h3>
   <p>{{ customer().company.name }}</p>
   <a [href]="'mailto:' + customer().email">{{ customer().email }}</a>
-  @if (favorite()) {
-    <span class="star">★</span>
-  }
+  <button type="button" class="star" (click)="favoriteToggle.emit(customer().id)">
+    {{ favorite() ? '★' : '☆' }}
+  </button>
 </article>

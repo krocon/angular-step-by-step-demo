@@ -43,6 +43,7 @@
         <app-customer-card
           [customer]="customer"
           [favorite]="favorites().includes(customer.id)"
+          (favoriteToggle)="toggleFavorite($event)"
         />
       }
     </div>

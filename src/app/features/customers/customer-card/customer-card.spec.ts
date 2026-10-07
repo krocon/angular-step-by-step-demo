@@ -30,4 +30,11 @@ describe('CustomerCard', () => {
     await fixture.whenStable();
     expect((fixture.nativeElement as HTMLElement).querySelector('.favorite')).toBeTruthy();
   });
+
+  it('emits the id when the star is clicked', () => {
+    let emitted: number | undefined;
+    fixture.componentInstance.favoriteToggle.subscribe((id) => (emitted = id));
+    ((fixture.nativeElement as HTMLElement).querySelector('button') as HTMLButtonElement).click();
+    expect(emitted).toBe(1);
+  });
 });
