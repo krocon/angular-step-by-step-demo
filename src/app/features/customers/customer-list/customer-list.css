@@ -21,3 +21,7 @@ li button {
   gap: 1rem;
 }
 
+
+.error {
+  color: #b91c1c;
+}

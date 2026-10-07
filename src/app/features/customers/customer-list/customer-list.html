@@ -2,45 +2,52 @@
 
 <app-search-box [(value)]="query" />
 
-@let count = filtered().length;
-<p>{{ count }} von {{ customers().length }} Kunden</p>
-
-@if (favoriteCount() > 0) {
-  <p>⭐ {{ favoriteCount() }} Favoriten</p>
+@if (customersResource.isLoading()) {
+  <p>Lade Kunden …</p>
+} @else if (customersResource.error()) {
+  <p class="error">Kunden konnten nicht geladen werden.</p>
+  <button type="button" (click)="customersResource.reload()">Nochmal versuchen</button>
 } @else {
-  <p>Noch keine Favoriten. Klick auf den Stern!</p>
-}
+  @let count = filtered().length;
+  <p>{{ count }} von {{ customers().length }} Kunden</p>
 
-<div class="view-toggle">
-  <button type="button" (click)="view.set('list')">Liste</button>
-  <button type="button" (click)="view.set('cards')">Karten</button>
-</div>
-
-@switch (view()) {
-  @case ('list') {
-    <ul>
-      @for (customer of filtered(); track customer.id) {
-        <li>
-          <button type="button" (click)="toggleFavorite(customer.id)">
-            {{ favorites().includes(customer.id) ? '★' : '☆' }}
-          </button>
-          {{ customer.name }} · {{ customer.company.name }}
-        </li>
-      } @empty {
-        <li>Keine Kunden gefunden.</li>
-      }
-    </ul>
+  @if (favoriteCount() > 0) {
+    <p>⭐ {{ favoriteCount() }} Favoriten</p>
+  } @else {
+    <p>Noch keine Favoriten. Klick auf den Stern!</p>
   }
-  @case ('cards') {
-    <div class="cards">
-      @for (customer of filtered(); track customer.id) {
-        <app-customer-card
-          [customer]="customer"
-          [favorite]="favorites().includes(customer.id)"
-          (favoriteToggle)="toggleFavorite($event)"
-        />
-      }
-    </div>
+
+  <div class="view-toggle">
+    <button type="button" (click)="view.set('list')">Liste</button>
+    <button type="button" (click)="view.set('cards')">Karten</button>
+  </div>
+
+  @switch (view()) {
+    @case ('list') {
+      <ul>
+        @for (customer of filtered(); track customer.id) {
+          <li>
+            <button type="button" (click)="toggleFavorite(customer.id)">
+              {{ favorites().includes(customer.id) ? '★' : '☆' }}
+            </button>
+            {{ customer.name }} · {{ customer.company.name }}
+          </li>
+        } @empty {
+          <li>Keine Kunden gefunden.</li>
+        }
+      </ul>
+    }
+    @case ('cards') {
+      <div class="cards">
+        @for (customer of filtered(); track customer.id) {
+          <app-customer-card
+            [customer]="customer"
+            [favorite]="favorites().includes(customer.id)"
+            (favoriteToggle)="toggleFavorite($event)"
+          />
+        }
+      </div>
+    }
   }
 }
 

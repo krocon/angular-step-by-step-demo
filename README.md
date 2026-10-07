@@ -245,3 +245,16 @@ protected readonly customers = computed(() =>
 ```
 
 Kein `provideHttpClient()` nötig: `HttpClient` ist seit Angular 21 automatisch verfügbar.
+
+## Folge 019 – Loading- und Error-States
+
+```html
+@if (customersResource.isLoading()) {
+  <p>Lade Kunden …</p>
+} @else if (customersResource.error()) {
+  <p class="error">Kunden konnten nicht geladen werden.</p>
+  <button type="button" (click)="customersResource.reload()">Nochmal versuchen</button>
+} @else {
+  <!-- Zähler, Favoriten, Liste/Karten -->
+}
+```

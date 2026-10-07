@@ -79,4 +79,16 @@ describe('CustomerList', () => {
     await fixture.whenStable();
     expect(el.querySelectorAll('app-customer-card').length).toBe(3);
   });
+
+  it('shows an error message and retries', async () => {
+    const http = TestBed.inject(HttpTestingController);
+    const el = fixture.nativeElement as HTMLElement;
+    component['customersResource'].reload();
+    TestBed.tick();
+    http
+      .expectOne('https://jsonplaceholder.typicode.com/users')
+      .flush('kaputt', { status: 500, statusText: 'Server Error' });
+    await fixture.whenStable();
+    expect(el.textContent).toContain('Kunden konnten nicht geladen werden.');
+  });
 });
