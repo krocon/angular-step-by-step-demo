@@ -1,0 +1,7 @@
+<input
+  #search
+  type="search"
+  placeholder="Suchen …"
+  [value]="value()"
+  (input)="value.set(search.value)"
+/>

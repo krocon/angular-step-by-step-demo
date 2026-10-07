@@ -1,12 +1,6 @@
 <h2>Kunden</h2>
 
-<input
-  #search
-  type="search"
-  placeholder="Kunden suchen …"
-  [value]="query()"
-  (input)="query.set(search.value)"
-/>
+<app-search-box [(value)]="query" />
 
 @let count = filtered().length;
 <p>{{ count }} von {{ customers().length }} Kunden</p>

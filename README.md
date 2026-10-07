@@ -214,3 +214,20 @@ readonly favoriteToggle = output<number>();
 <!-- customer-list.html -->
 <app-customer-card … (favoriteToggle)="toggleFavorite($event)" />
 ```
+
+## Folge 017 – model(): Two-way Binding mit der Search-Box
+
+```bash
+ng generate component shared/search-box
+```
+
+```ts
+readonly value = model('');
+```
+
+```html
+<!-- customer-list.html: ersetzt das input aus Folge 011 -->
+<app-search-box [(value)]="query" />
+```
+
+Banana in a box `[( )]` – und das Signal `query` **ohne** Klammern übergeben.

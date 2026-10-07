@@ -2,9 +2,10 @@ import { Component, computed, effect, signal } from '@angular/core';
 import { Customer } from '../customer';
 import { CustomerCard } from '../customer-card/customer-card';
 import { CustomerStats } from '../customer-stats/customer-stats';
+import { SearchBox } from '../../../shared/search-box/search-box';
 
 @Component({
-  imports: [CustomerCard, CustomerStats],
+  imports: [CustomerCard, CustomerStats, SearchBox],
   selector: 'app-customer-list',
   styleUrl: './customer-list.css',
   templateUrl: './customer-list.html',
