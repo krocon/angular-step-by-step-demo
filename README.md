@@ -20,3 +20,10 @@ node -v              # v24.x
 npm install -g pnpm
 pnpm -v
 ```
+
+## Folge 002 – Angular CLI
+
+```bash
+npm install -g @angular/cli@22
+ng version           # Angular CLI 22.x
+```
