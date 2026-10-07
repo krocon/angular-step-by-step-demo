@@ -141,3 +141,18 @@ Faustregel: Werte berechnen → `computed()`. Nebenwirkungen (Speichern, Logging
 ```
 
 `[ ]` = Daten ins Element (Property Binding) · `( )` = Events aus dem Element (Event Binding) · `#search` = Template-Variable
+
+## Folge 012 – @if und @let
+
+```html
+@let count = filtered().length;
+<p>{{ count }} von {{ customers().length }} Kunden</p>
+
+@if (favoriteCount() > 0) {
+  <p>⭐ {{ favoriteCount() }} Favoriten</p>
+} @else {
+  <p>Noch keine Favoriten. Klick auf den Stern!</p>
+}
+```
+
+Dazu pro Zeile ein Stern-Button: `(click)="toggleFavorite(customer.id)"`.

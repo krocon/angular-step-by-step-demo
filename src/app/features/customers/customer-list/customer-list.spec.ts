@@ -51,4 +51,11 @@ describe('CustomerList', () => {
     await fixture.whenStable();
     expect(el.querySelectorAll('li').length).toBe(1);
   });
+
+  it('shows the favorite count after clicking a star', async () => {
+    const el = fixture.nativeElement as HTMLElement;
+    (el.querySelector('li button') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    expect(el.textContent).toContain('⭐ 1 Favoriten');
+  });
 });

@@ -7,11 +7,24 @@
   [value]="query()"
   (input)="query.set(search.value)"
 />
-<p>{{ filtered().length }} von {{ customers().length }} Kunden · {{ favoriteCount() }} Favoriten</p>
+
+@let count = filtered().length;
+<p>{{ count }} von {{ customers().length }} Kunden</p>
+
+@if (favoriteCount() > 0) {
+  <p>⭐ {{ favoriteCount() }} Favoriten</p>
+} @else {
+  <p>Noch keine Favoriten. Klick auf den Stern!</p>
+}
 
 <ul>
   @for (customer of filtered(); track customer.id) {
-    <li>{{ customer.name }} · {{ customer.company.name }}</li>
+    <li>
+      <button type="button" (click)="toggleFavorite(customer.id)">
+        {{ favorites().includes(customer.id) ? '★' : '☆' }}
+      </button>
+      {{ customer.name }} · {{ customer.company.name }}
+    </li>
   } @empty {
     <li>Keine Kunden gefunden.</li>
   }
