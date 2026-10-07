@@ -258,3 +258,24 @@ Kein `provideHttpClient()` nötig: `HttpClient` ist seit Angular 21 automatisch 
   <!-- Zähler, Favoriten, Liste/Karten -->
 }
 ```
+
+## Folge 020 – Service und Mutationen mit HttpClient
+
+```bash
+ng generate service features/customers/customer-api
+```
+
+```ts
+@Service()
+export class CustomerApi {
+  private readonly http = inject(HttpClient);
+  private readonly url = 'https://jsonplaceholder.typicode.com/users';
+
+  rename(id: number, name: string) {
+    return this.http.patch<Customer>(`${this.url}/${id}`, { name });
+  }
+}
+```
+
+Resources **lesen**, der HttpClient **schreibt** (post, put, patch, delete).
+`@Service()` (neu in Angular 22) ersetzt `@Injectable({ providedIn: 'root' })`.
