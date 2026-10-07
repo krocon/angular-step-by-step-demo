@@ -90,3 +90,13 @@ ng generate component features/customers/customer-list
 - `customers = signal<Customer[]>([...])`, `query = signal('')`, `favorites = signal<number[]>([])`
 - Lesen: `customers()` · Schreiben: `set(wert)` oder `update(alt => neu)`
 - `toggleFavorite(id)` gibt immer ein **neues** Array zurück
+
+## Folge 008 – computed(): abgeleitete Werte
+
+```ts
+protected readonly filtered = computed(() => {
+  const q = this.query().trim().toLowerCase();
+  return this.customers().filter((c) => c.name.toLowerCase().includes(q));
+});
+protected readonly favoriteCount = computed(() => this.favorites().length);
+```

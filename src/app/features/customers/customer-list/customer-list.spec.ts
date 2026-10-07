@@ -25,4 +25,9 @@ describe('CustomerList', () => {
     component.toggleFavorite(2);
     expect(component['favorites']()).toEqual([]);
   });
+
+  it('filters by name', () => {
+    component['query'].set('  ER ');
+    expect(component['filtered']().map((c) => c.name)).toEqual(['Ervin Howell']);
+  });
 });

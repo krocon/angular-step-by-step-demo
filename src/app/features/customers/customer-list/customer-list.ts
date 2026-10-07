@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { Customer } from '../customer';
 
 @Component({
@@ -16,6 +16,13 @@ export class CustomerList {
 
   protected readonly query = signal('');
   protected readonly favorites = signal<number[]>([]);
+
+  protected readonly filtered = computed(() => {
+    const q = this.query().trim().toLowerCase();
+    return this.customers().filter((c) => c.name.toLowerCase().includes(q));
+  });
+
+  protected readonly favoriteCount = computed(() => this.favorites().length);
 
   toggleFavorite(id: number) {
     this.favorites.update((ids) =>
