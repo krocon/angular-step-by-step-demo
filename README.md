@@ -279,3 +279,19 @@ export class CustomerApi {
 
 Resources **lesen**, der HttpClient **schreibt** (post, put, patch, delete).
 `@Service()` (neu in Angular 22) ersetzt `@Injectable({ providedIn: 'root' })`.
+
+## Folge 021 – Funktionaler HTTP-Interceptor
+
+```bash
+ng generate interceptor core/api
+```
+
+```ts
+export const apiInterceptor: HttpInterceptorFn = (req, next) => {
+  console.log('→', req.method, req.url);
+  return next(req.clone({ setHeaders: { 'X-App': 'kundenportal' } }));
+};
+
+// app.config.ts
+provideHttpClient(withInterceptors([apiInterceptor])),
+```
