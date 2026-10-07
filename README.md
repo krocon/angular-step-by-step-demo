@@ -74,3 +74,13 @@ export const appConfig: ApplicationConfig = {
 ```
 
 Kein NgModule: Die App startet direkt mit der Root-Komponente, globale Dienste kommen als `provideXxx()`-Funktionen in die Provider-Liste.
+
+## Folge 006 – Die erste eigene Komponente
+
+```bash
+ng generate component features/customers/customer-list
+```
+
+- `app.html`: Starter-Seite gelöscht → Header mit `{{ title() }}` und `<router-outlet />`
+- `features/customers/customer.ts`: Interface `Customer`
+- `app.routes.ts`: `{ path: '', component: CustomerList }`

@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* Globale Styles */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+}
