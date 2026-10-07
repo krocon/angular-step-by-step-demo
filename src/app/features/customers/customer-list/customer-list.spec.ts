@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, DeferBlockBehavior, TestBed } from '@angular/core/testing';
 import { CustomerList } from './customer-list';
 
 describe('CustomerList', () => {
@@ -9,6 +9,7 @@ describe('CustomerList', () => {
     localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [CustomerList],
+      deferBlockBehavior: DeferBlockBehavior.Manual,
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerList);

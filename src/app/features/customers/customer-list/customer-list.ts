@@ -1,8 +1,9 @@
 import { Component, computed, effect, signal } from '@angular/core';
 import { Customer } from '../customer';
+import { CustomerStats } from '../customer-stats/customer-stats';
 
 @Component({
-  imports: [],
+  imports: [CustomerStats],
   selector: 'app-customer-list',
   styleUrl: './customer-list.css',
   templateUrl: './customer-list.html',

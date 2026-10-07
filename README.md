@@ -169,3 +169,19 @@ protected readonly view = signal<'list' | 'cards'>('list');
   @case ('cards') { <div class="cards">…</div> }
 }
 ```
+
+## Folge 014 – @defer: Code erst laden, wenn er gebraucht wird
+
+```bash
+ng generate component features/customers/customer-stats
+```
+
+```html
+@defer (on viewport) {
+  <app-customer-stats />
+} @placeholder {
+  <p>Statistik wird geladen …</p>
+}
+```
+
+`pnpm build` zeigt danach einen eigenen **Lazy chunk** für `customer-stats`.
