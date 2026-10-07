@@ -1,1 +1,12 @@
-<h2>Kundendetails</h2>
+@if (customer.hasValue()) {
+  @let c = customer.value();
+  <h2>{{ c.name }}</h2>
+  <p>{{ c.company.name }} · {{ c.email }}</p>
+
+  <input #newName [value]="c.name" />
+  <button type="button" (click)="rename(newName.value)">Umbenennen</button>
+} @else if (customer.isLoading()) {
+  <p>Lade Kunde …</p>
+} @else if (customer.error()) {
+  <p>Kunde nicht gefunden.</p>
+}

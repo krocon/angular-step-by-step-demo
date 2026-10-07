@@ -310,3 +310,19 @@ export const routes: Routes = [
   { path: '**', redirectTo: 'customers' },
 ];
 ```
+
+## Folge 023 – Route-Parameter als Input
+
+```ts
+// app.config.ts
+provideRouter(routes, withComponentInputBinding()),
+
+// customer-detail.ts
+readonly id = input.required<string>();
+
+protected readonly customer = httpResource<Customer>(
+  () => `https://jsonplaceholder.typicode.com/users/${this.id()}`,
+);
+```
+
+Direkt aufrufen: http://localhost:4200/customers/3 – kein `ActivatedRoute`, kein `subscribe` auf `paramMap`.
