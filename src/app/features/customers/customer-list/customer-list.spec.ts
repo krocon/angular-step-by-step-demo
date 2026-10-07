@@ -18,4 +18,11 @@ describe('CustomerList', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('toggles a favorite', () => {
+    component.toggleFavorite(2);
+    expect(component['favorites']()).toEqual([2]);
+    component.toggleFavorite(2);
+    expect(component['favorites']()).toEqual([]);
+  });
 });

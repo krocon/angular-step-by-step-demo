@@ -84,3 +84,9 @@ ng generate component features/customers/customer-list
 - `app.html`: Starter-Seite gelöscht → Header mit `{{ title() }}` und `<router-outlet />`
 - `features/customers/customer.ts`: Interface `Customer`
 - `app.routes.ts`: `{ path: '', component: CustomerList }`
+
+## Folge 007 – signal(): State lesen und schreiben
+
+- `customers = signal<Customer[]>([...])`, `query = signal('')`, `favorites = signal<number[]>([])`
+- Lesen: `customers()` · Schreiben: `set(wert)` oder `update(alt => neu)`
+- `toggleFavorite(id)` gibt immer ein **neues** Array zurück
