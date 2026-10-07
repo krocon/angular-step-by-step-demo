@@ -1,4 +1,5 @@
 import { Component, computed, effect, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { Customer } from '../customer';
 import { CustomerCard } from '../customer-card/customer-card';
 import { CustomerStats } from '../customer-stats/customer-stats';
@@ -11,11 +12,13 @@ import { SearchBox } from '../../../shared/search-box/search-box';
   templateUrl: './customer-list.html',
 })
 export class CustomerList {
-  protected readonly customers = signal<Customer[]>([
-    { id: 1, name: 'Leanne Graham', email: 'Sincere@april.biz', company: { name: 'Romaguera-Crona' } },
-    { id: 2, name: 'Ervin Howell', email: 'Shanna@melissa.tv', company: { name: 'Deckow-Crist' } },
-    { id: 3, name: 'Clementine Bauch', email: 'Nathan@yesenia.net', company: { name: 'Romaguera-Jacobson' } },
-  ]);
+  protected readonly customersResource = httpResource<Customer[]>(
+    () => 'https://jsonplaceholder.typicode.com/users',
+  );
+
+  protected readonly customers = computed(() =>
+    this.customersResource.hasValue() ? this.customersResource.value() : [],
+  );
 
   protected readonly query = signal('');
   protected readonly favorites = signal<number[]>([]);

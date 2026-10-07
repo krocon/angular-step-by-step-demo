@@ -231,3 +231,17 @@ readonly value = model('');
 ```
 
 Banana in a box `[( )]` – und das Signal `query` **ohne** Klammern übergeben.
+
+## Folge 018 – httpResource(): echte Daten laden
+
+```ts
+protected readonly customersResource = httpResource<Customer[]>(
+  () => 'https://jsonplaceholder.typicode.com/users',
+);
+
+protected readonly customers = computed(() =>
+  this.customersResource.hasValue() ? this.customersResource.value() : [],
+);
+```
+
+Kein `provideHttpClient()` nötig: `HttpClient` ist seit Angular 21 automatisch verfügbar.

@@ -1,5 +1,13 @@
 import { ComponentFixture, DeferBlockBehavior, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CustomerList } from './customer-list';
+
+const CUSTOMERS = [
+  { id: 1, name: 'Leanne Graham', email: 'Sincere@april.biz', company: { name: 'Romaguera-Crona' } },
+  { id: 2, name: 'Ervin Howell', email: 'Shanna@melissa.tv', company: { name: 'Deckow-Crist' } },
+  { id: 3, name: 'Clementine Bauch', email: 'Nathan@yesenia.net', company: { name: 'Romaguera-Jacobson' } },
+];
 
 describe('CustomerList', () => {
   let component: CustomerList;
@@ -10,10 +18,15 @@ describe('CustomerList', () => {
     await TestBed.configureTestingModule({
       imports: [CustomerList],
       deferBlockBehavior: DeferBlockBehavior.Manual,
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerList);
     component = fixture.componentInstance;
+    TestBed.tick();
+    TestBed.inject(HttpTestingController)
+      .expectOne('https://jsonplaceholder.typicode.com/users')
+      .flush(CUSTOMERS);
     await fixture.whenStable();
   });
 
