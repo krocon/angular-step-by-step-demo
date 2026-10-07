@@ -1,2 +1,10 @@
 <h2>Kunden</h2>
 <p>{{ filtered().length }} von {{ customers().length }} Kunden · {{ favoriteCount() }} Favoriten</p>
+
+<ul>
+  @for (customer of filtered(); track customer.id) {
+    <li>{{ customer.name }} · {{ customer.company.name }}</li>
+  } @empty {
+    <li>Keine Kunden gefunden.</li>
+  }
+</ul>

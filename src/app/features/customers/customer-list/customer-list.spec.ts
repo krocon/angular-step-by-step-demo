@@ -37,4 +37,9 @@ describe('CustomerList', () => {
     await fixture.whenStable();
     expect(localStorage.getItem('favorites')).toBe('[3]');
   });
+
+  it('renders one list item per customer', () => {
+    const items = (fixture.nativeElement as HTMLElement).querySelectorAll('li');
+    expect(items.length).toBe(3);
+  });
 });

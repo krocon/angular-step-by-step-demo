@@ -115,3 +115,15 @@ constructor() {
 ```
 
 Faustregel: Werte berechnen → `computed()`. Nebenwirkungen (Speichern, Logging) → `effect()`.
+
+## Folge 010 – Listen mit @for und track
+
+```html
+<ul>
+  @for (customer of filtered(); track customer.id) {
+    <li>{{ customer.name }} · {{ customer.company.name }}</li>
+  } @empty {
+    <li>Keine Kunden gefunden.</li>
+  }
+</ul>
+```
