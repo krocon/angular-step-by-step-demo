@@ -1,12 +1,13 @@
 import { Component, computed, effect, signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 import { Customer } from '../customer';
 import { CustomerCard } from '../customer-card/customer-card';
 import { CustomerStats } from '../customer-stats/customer-stats';
 import { SearchBox } from '../../../shared/search-box/search-box';
 
 @Component({
-  imports: [CustomerCard, CustomerStats, SearchBox],
+  imports: [CustomerCard, CustomerStats, RouterLink, SearchBox],
   selector: 'app-customer-list',
   styleUrl: './customer-list.css',
   templateUrl: './customer-list.html',

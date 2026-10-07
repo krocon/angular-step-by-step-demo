@@ -1,4 +1,5 @@
 import { ComponentFixture, DeferBlockBehavior, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CustomerList } from './customer-list';
@@ -18,7 +19,7 @@ describe('CustomerList', () => {
     await TestBed.configureTestingModule({
       imports: [CustomerList],
       deferBlockBehavior: DeferBlockBehavior.Manual,
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerList);

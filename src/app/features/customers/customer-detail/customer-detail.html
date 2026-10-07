@@ -1,7 +1,19 @@
+<a routerLink="/customers">← Zurück</a>
+
 @if (customer.hasValue()) {
   @let c = customer.value();
   <h2>{{ c.name }}</h2>
-  <p>{{ c.company.name }} · {{ c.email }}</p>
+
+  <nav class="tabs">
+    <a [routerLink]="[]" [queryParams]="{ tab: 'firma' }">Firma</a>
+    <a [routerLink]="[]" [queryParams]="{ tab: 'kontakt' }">Kontakt</a>
+  </nav>
+
+  @if (tab() === 'kontakt') {
+    <p>E-Mail: {{ c.email }}</p>
+  } @else {
+    <p>Firma: {{ c.company.name }}</p>
+  }
 
   <input #newName [value]="c.name" />
   <button type="button" (click)="rename(newName.value)">Umbenennen</button>

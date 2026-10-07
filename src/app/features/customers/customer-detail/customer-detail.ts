@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { httpResource } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 import { Customer } from '../customer';
 import { CustomerApi } from '../customer-api';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-customer-detail',
   styleUrl: './customer-detail.css',
   templateUrl: './customer-detail.html',
@@ -13,6 +14,7 @@ export class CustomerDetail {
   private readonly api = inject(CustomerApi);
 
   readonly id = input.required<string>();
+  readonly tab = input<string>();
 
   protected readonly customer = httpResource<Customer>(
     () => `https://jsonplaceholder.typicode.com/users/${this.id()}`,

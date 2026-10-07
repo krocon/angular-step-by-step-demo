@@ -30,7 +30,7 @@
             <button type="button" (click)="toggleFavorite(customer.id)">
               {{ favorites().includes(customer.id) ? '★' : '☆' }}
             </button>
-            {{ customer.name }} · {{ customer.company.name }}
+            <a [routerLink]="['/customers', customer.id]">{{ customer.name }}</a> · {{ customer.company.name }}
           </li>
         } @empty {
           <li>Keine Kunden gefunden.</li>

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CustomerDetail } from './customer-detail';
@@ -18,7 +19,7 @@ describe('CustomerDetail', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CustomerDetail],
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerDetail);
@@ -42,5 +43,11 @@ describe('CustomerDetail', () => {
     expect((fixture.nativeElement as HTMLElement).querySelector('h2')?.textContent).toContain(
       'Clementine B.',
     );
+  });
+
+  it('shows the contact tab from the query parameter', async () => {
+    fixture.componentRef.setInput('tab', 'kontakt');
+    await fixture.whenStable();
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain('E-Mail: Nathan@yesenia.net');
   });
 });

@@ -1,8 +1,9 @@
 import { Component, booleanAttribute, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Customer } from '../customer';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-customer-card',
   styleUrl: './customer-card.css',
   templateUrl: './customer-card.html',

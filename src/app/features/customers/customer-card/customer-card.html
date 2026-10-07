@@ -1,5 +1,5 @@
 <article class="card" [class.favorite]="favorite()">
-  <h3>{{ customer().name }}</h3>
+  <h3><a [routerLink]="['/customers', customer().id]">{{ customer().name }}</a></h3>
   <p>{{ customer().company.name }}</p>
   <a [href]="'mailto:' + customer().email">{{ customer().email }}</a>
   <button type="button" class="star" (click)="favoriteToggle.emit(customer().id)">

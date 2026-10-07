@@ -326,3 +326,20 @@ protected readonly customer = httpResource<Customer>(
 ```
 
 Direkt aufrufen: http://localhost:4200/customers/3 – kein `ActivatedRoute`, kein `subscribe` auf `paramMap`.
+
+## Folge 024 – routerLink und Query-Parameter
+
+```html
+<!-- Liste & Karte -->
+<a [routerLink]="['/customers', customer.id]">{{ customer.name }}</a>
+
+<!-- Detailseite -->
+<a routerLink="/customers">← Zurück</a>
+<a [routerLink]="[]" [queryParams]="{ tab: 'kontakt' }">Kontakt</a>
+```
+
+```ts
+readonly tab = input<string>();   // ?tab=kontakt landet dank withComponentInputBinding() hier
+```
+
+🎉 Ende von Staffel 1. Weiter geht's mit Forms, State, DI, Styling, Testing und Architektur.
