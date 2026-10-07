@@ -6,6 +6,7 @@ describe('CustomerList', () => {
   let fixture: ComponentFixture<CustomerList>;
 
   beforeEach(async () => {
+    localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [CustomerList],
     }).compileComponents();
@@ -29,5 +30,11 @@ describe('CustomerList', () => {
   it('filters by name', () => {
     component['query'].set('  ER ');
     expect(component['filtered']().map((c) => c.name)).toEqual(['Ervin Howell']);
+  });
+
+  it('saves favorites in localStorage', async () => {
+    component.toggleFavorite(3);
+    await fixture.whenStable();
+    expect(localStorage.getItem('favorites')).toBe('[3]');
   });
 });

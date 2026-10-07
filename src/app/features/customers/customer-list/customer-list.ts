@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { Customer } from '../customer';
 
 @Component({
@@ -23,6 +23,15 @@ export class CustomerList {
   });
 
   protected readonly favoriteCount = computed(() => this.favorites().length);
+
+  constructor() {
+    const saved = localStorage.getItem('favorites');
+    if (saved) this.favorites.set(JSON.parse(saved));
+
+    effect(() => {
+      localStorage.setItem('favorites', JSON.stringify(this.favorites()));
+    });
+  }
 
   toggleFavorite(id: number) {
     this.favorites.update((ids) =>

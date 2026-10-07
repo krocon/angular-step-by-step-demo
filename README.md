@@ -100,3 +100,18 @@ protected readonly filtered = computed(() => {
 });
 protected readonly favoriteCount = computed(() => this.favorites().length);
 ```
+
+## Folge 009 – effect(): Favoriten im localStorage
+
+```ts
+constructor() {
+  const saved = localStorage.getItem('favorites');
+  if (saved) this.favorites.set(JSON.parse(saved));
+
+  effect(() => {
+    localStorage.setItem('favorites', JSON.stringify(this.favorites()));
+  });
+}
+```
+
+Faustregel: Werte berechnen → `computed()`. Nebenwirkungen (Speichern, Logging) → `effect()`.
