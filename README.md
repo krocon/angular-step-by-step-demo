@@ -185,3 +185,18 @@ ng generate component features/customers/customer-stats
 ```
 
 `pnpm build` zeigt danach einen eigenen **Lazy chunk** für `customer-stats`.
+
+## Folge 015 – input() und input.required()
+
+```bash
+ng generate component features/customers/customer-card
+```
+
+```ts
+readonly customer = input.required<Customer>();
+readonly favorite = input(false, { transform: booleanAttribute });
+```
+
+```html
+<app-customer-card [customer]="customer" [favorite]="favorites().includes(customer.id)" />
+```

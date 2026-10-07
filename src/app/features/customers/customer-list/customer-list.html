@@ -40,10 +40,10 @@
   @case ('cards') {
     <div class="cards">
       @for (customer of filtered(); track customer.id) {
-        <article class="card">
-          <h3>{{ customer.name }}</h3>
-          <p>{{ customer.company.name }}</p>
-        </article>
+        <app-customer-card
+          [customer]="customer"
+          [favorite]="favorites().includes(customer.id)"
+        />
       }
     </div>
   }

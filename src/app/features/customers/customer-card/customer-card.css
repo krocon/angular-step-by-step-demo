@@ -1,0 +1,18 @@
+.card {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.card.favorite {
+  border-color: #f59e0b;
+}
+
+.star {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  color: #f59e0b;
+}

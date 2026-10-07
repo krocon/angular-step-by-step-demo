@@ -64,6 +64,6 @@ describe('CustomerList', () => {
     const el = fixture.nativeElement as HTMLElement;
     component['view'].set('cards');
     await fixture.whenStable();
-    expect(el.querySelectorAll('.card').length).toBe(3);
+    expect(el.querySelectorAll('app-customer-card').length).toBe(3);
   });
 });
