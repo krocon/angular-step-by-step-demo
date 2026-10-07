@@ -60,3 +60,17 @@ src/
     app.routes.ts   Routen
     app.spec.ts     Test (Vitest)
 ```
+
+## Folge 005 – main.ts und app.config.ts
+
+```ts
+// src/main.ts
+bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+
+// src/app/app.config.ts
+export const appConfig: ApplicationConfig = {
+  providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes)],
+};
+```
+
+Kein NgModule: Die App startet direkt mit der Root-Komponente, globale Dienste kommen als `provideXxx()`-Funktionen in die Provider-Liste.
