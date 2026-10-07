@@ -40,3 +40,23 @@ Beim allerersten Start fragt die CLI, ob sie anonyme Nutzungsdaten senden darf (
 Standalone, strict (TypeScript 6 + strict Templates), Zoneless und Vitest sind in Angular 22 Standard.
 
 > In diesem Repo liegt das Projekt direkt im Wurzelordner (statt in `kundenportal/`).
+
+## Folge 004 – Rundgang durch die Projektstruktur
+
+```text
+angular.json        CLI-Konfiguration: build, serve, test
+package.json        Abhängigkeiten & Skripte (start, build, test) – ohne zone.js
+tsconfig.json       TypeScript 6: strict ist Standard und steht nicht mehr drin
+public/             statische Dateien (favicon.ico)
+src/
+  index.html        die eine HTML-Seite mit <app-root>
+  main.ts           Startpunkt: bootstrapApplication(App, appConfig)
+  styles.css        globale Styles
+  app/
+    app.ts          Root-Komponente (Style Guide 2025: ohne .component im Namen)
+    app.html        Template
+    app.css         Styles der Komponente
+    app.config.ts   globale Provider
+    app.routes.ts   Routen
+    app.spec.ts     Test (Vitest)
+```
