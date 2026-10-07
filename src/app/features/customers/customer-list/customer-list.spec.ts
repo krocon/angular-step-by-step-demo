@@ -58,4 +58,11 @@ describe('CustomerList', () => {
     await fixture.whenStable();
     expect(el.textContent).toContain('⭐ 1 Favoriten');
   });
+
+  it('switches to the card view', async () => {
+    const el = fixture.nativeElement as HTMLElement;
+    component['view'].set('cards');
+    await fixture.whenStable();
+    expect(el.querySelectorAll('.card').length).toBe(3);
+  });
 });

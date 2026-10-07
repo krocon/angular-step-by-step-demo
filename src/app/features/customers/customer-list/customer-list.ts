@@ -16,6 +16,7 @@ export class CustomerList {
 
   protected readonly query = signal('');
   protected readonly favorites = signal<number[]>([]);
+  protected readonly view = signal<'list' | 'cards'>('list');
 
   protected readonly filtered = computed(() => {
     const q = this.query().trim().toLowerCase();

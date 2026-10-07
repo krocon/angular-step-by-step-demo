@@ -156,3 +156,16 @@ Faustregel: Werte berechnen → `computed()`. Nebenwirkungen (Speichern, Logging
 ```
 
 Dazu pro Zeile ein Stern-Button: `(click)="toggleFavorite(customer.id)"`.
+
+## Folge 013 – @switch: Liste oder Karten
+
+```ts
+protected readonly view = signal<'list' | 'cards'>('list');
+```
+
+```html
+@switch (view()) {
+  @case ('list') { <ul>…</ul> }
+  @case ('cards') { <div class="cards">…</div> }
+}
+```

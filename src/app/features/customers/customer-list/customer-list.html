@@ -17,15 +17,34 @@
   <p>Noch keine Favoriten. Klick auf den Stern!</p>
 }
 
-<ul>
-  @for (customer of filtered(); track customer.id) {
-    <li>
-      <button type="button" (click)="toggleFavorite(customer.id)">
-        {{ favorites().includes(customer.id) ? '★' : '☆' }}
-      </button>
-      {{ customer.name }} · {{ customer.company.name }}
-    </li>
-  } @empty {
-    <li>Keine Kunden gefunden.</li>
+<div class="view-toggle">
+  <button type="button" (click)="view.set('list')">Liste</button>
+  <button type="button" (click)="view.set('cards')">Karten</button>
+</div>
+
+@switch (view()) {
+  @case ('list') {
+    <ul>
+      @for (customer of filtered(); track customer.id) {
+        <li>
+          <button type="button" (click)="toggleFavorite(customer.id)">
+            {{ favorites().includes(customer.id) ? '★' : '☆' }}
+          </button>
+          {{ customer.name }} · {{ customer.company.name }}
+        </li>
+      } @empty {
+        <li>Keine Kunden gefunden.</li>
+      }
+    </ul>
   }
-</ul>
+  @case ('cards') {
+    <div class="cards">
+      @for (customer of filtered(); track customer.id) {
+        <article class="card">
+          <h3>{{ customer.name }}</h3>
+          <p>{{ customer.company.name }}</p>
+        </article>
+      }
+    </div>
+  }
+}
