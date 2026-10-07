@@ -42,4 +42,13 @@ describe('CustomerList', () => {
     const items = (fixture.nativeElement as HTMLElement).querySelectorAll('li');
     expect(items.length).toBe(3);
   });
+
+  it('filters the list when typing into the search field', async () => {
+    const el = fixture.nativeElement as HTMLElement;
+    const input = el.querySelector('input') as HTMLInputElement;
+    input.value = 'clem';
+    input.dispatchEvent(new Event('input'));
+    await fixture.whenStable();
+    expect(el.querySelectorAll('li').length).toBe(1);
+  });
 });

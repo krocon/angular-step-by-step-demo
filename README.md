@@ -127,3 +127,17 @@ Faustregel: Werte berechnen → `computed()`. Nebenwirkungen (Speichern, Logging
   }
 </ul>
 ```
+
+## Folge 011 – Property- und Event-Binding: die Suche
+
+```html
+<input
+  #search
+  type="search"
+  placeholder="Kunden suchen …"
+  [value]="query()"
+  (input)="query.set(search.value)"
+/>
+```
+
+`[ ]` = Daten ins Element (Property Binding) · `( )` = Events aus dem Element (Event Binding) · `#search` = Template-Variable

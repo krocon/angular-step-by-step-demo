@@ -1,4 +1,12 @@
 <h2>Kunden</h2>
+
+<input
+  #search
+  type="search"
+  placeholder="Kunden suchen …"
+  [value]="query()"
+  (input)="query.set(search.value)"
+/>
 <p>{{ filtered().length }} von {{ customers().length }} Kunden · {{ favoriteCount() }} Favoriten</p>
 
 <ul>
